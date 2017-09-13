@@ -33,7 +33,7 @@ v1.0开发中
 # 开发环境
 - 操作系统 linux
 - 本地环境 apache + php7 + MariaDB
-- 开发工具 atom
+- 开发工具 phpstorm
 
 # 视频支持网站
 阿北兄弟连 http://nai8.me
