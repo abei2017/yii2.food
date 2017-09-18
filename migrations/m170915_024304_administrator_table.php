@@ -14,6 +14,7 @@ class m170915_024304_administrator_table extends Migration
             'created_at'=>$this->integer(11)->notNull()->defaultValue(0)->comment('生成时间'),
             'updated_at'=>$this->integer(11)->notNull()->defaultValue(0)->comment('更新时间')
         ]);
+
     }
 
     public function safeDown()
