@@ -9,6 +9,10 @@ yii2.good
 # 程序状态
 v1.0开发中
 
+# 演示地址
+- 前台 http://food.nai8.me
+- 管理后台 http://food.nai8.me/index.php?r=admin  账号admin/123456
+
 # 功能列表
 - 后台
   - 管理员 doing
