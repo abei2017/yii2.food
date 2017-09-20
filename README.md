@@ -41,3 +41,9 @@ v1.0开发中
 
 # 视频支持网站
 阿北兄弟连 http://nai8.me
+
+# 配套视频课程(更新到第4节)
+- 2017-09-14 前导课 http://nai8.me/course-video.html?id=177
+- 2017-09-15 使用migrate建立数据表&后台建立&db配置项解析 http://nai8.me/course-video.html?id=178
+- 2017-09-18 后台登录模块的实现 http://nai8.me/course-video.html?id=179
+- 2017-09-20 后台资源文件的规划 http://nai8.me/course-video.html?id=180
