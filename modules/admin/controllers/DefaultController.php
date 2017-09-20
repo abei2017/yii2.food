@@ -22,6 +22,10 @@ class DefaultController extends Controller
         return $this->render('index');
     }
 
+    /**
+     * 登录页面
+     * @return string | json
+     */
     public function actionLogin(){
 
         if(Yii::$app->request->isPost){
@@ -29,23 +33,25 @@ class DefaultController extends Controller
                 $adminname = Yii::$app->request->post('adminname');
                 $password = Yii::$app->request->post('password');
 
+                if(empty($adminname) OR empty($password)){
+                    throw new Exception('用户名和密码不能为空');
+                }
+
                 $check = Administrator::find()->where(['adminname'=>$adminname])->one();
                 if($check == false){
                     throw new Exception('用户不存在');
                 }
 
                 if(Yii::$app->security->validatePassword($password,$check->password) == false){
-                    throw new Exception('密码错误');
+                    throw new Exception('密码错误，请核实后填写。');
                 }
 
                 Yii::$app->admin->login($check);
 
-                echo Json::encode(['done'=>true]);
-
+                return Json::encode(['done'=>true]);
             }catch(Exception $e){
-                echo Json::encode(['done'=>false,'error'=>$e->getMessage()]);
+                return Json::encode(['done'=>false,'error'=>$e->getMessage()]);
             }
-            Yii::$app->end();
         }
 
         return $this->render('login');

@@ -37,7 +37,5 @@ class Module extends \yii\base\Module
         }else{
             return false;
         }
-
-
     }
 }

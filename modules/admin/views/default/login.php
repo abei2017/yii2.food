@@ -3,35 +3,30 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 ?>
+<div class="default-login">
+    <?php ActiveForm::begin([
+        'action'=>'javascript:;',
+        'id'=>'Form'
+    ]);?>
+    <div class="form">
+        <div class="form-group">
+            <div class="control-label">登录名</div>
+            <?= Html::textInput('adminname',null,['class'=>'form-control'])?>
+        </div>
 
-<?php ActiveForm::begin([
-    'action'=>'javascript:;',
-    'id'=>'Form'
-]);?>
+        <div class="form-group">
+            <div class="control-label">密码</div>
+            <?= Html::passwordInput('password',null,['class'=>'form-control']);?>
+        </div>
 
-<div>
-    <?= Html::textInput('adminname')?>
+        <div class="form-group form-button">
+            <button id="actLogin" data-url="<?= Url::to(['/admin/default/login']);?>">登录</button>
+        </div>
+    </div>
+    <?php ActiveForm::end();?>
 </div>
-
-<div>
-    <?= Html::passwordInput('password');?>
-</div>
-
-<div>
-    <button id="actLogin" data-url="<?= Url::to(['/admin/default/login']);?>">登录</button>
-</div>
-
-<?php ActiveForm::end();?>
-
 <script type="text/javascript">
-    $('#actLogin').click(function(){
-        var url = $(this).attr('data-url');
-        $.post(url,$('#Form').serializeArray(),function(d){
-            if(d.done == true){
-                window.location.href = '/index.php?r=admin';
-            }else{
-                alert(d.error);
-            }
-        },'json');
+    seajs.use('administrator',function(administrator){
+        administrator.login();
     });
 </script>
