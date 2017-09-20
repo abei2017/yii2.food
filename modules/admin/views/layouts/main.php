@@ -4,9 +4,9 @@
 /* @var $content string */
 
 use yii\helpers\Html;
-use app\assets\AppAsset;
+use app\assets\AdminAsset;
 
-AppAsset::register($this);
+AdminAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -18,6 +18,11 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    <script type="text/javascript">
+        seajs.config({
+            base: "/js/admin/modules/"
+        })
+    </script>
 </head>
 <body>
 <?php $this->beginBody() ?>
