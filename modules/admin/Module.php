@@ -29,13 +29,7 @@ class Module extends \yii\base\Module
         if (parent::beforeAction($action)) {
             $route = "{$action->controller->id}/{$action->id}";
 
-            $publicPages = [
-                'default/login',
-                'default/logout',
-                'default/error'
-            ];
-
-            if(Yii::$app->admin->isGuest && in_array($route,$publicPages) == false){
+            if(Yii::$app->admin->isGuest && in_array($route,Yii::$app->params['publicPages']) == false){
                 return Yii::$app->admin->loginRequired();
             }
 
