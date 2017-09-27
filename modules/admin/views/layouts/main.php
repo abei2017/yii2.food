@@ -3,8 +3,10 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use yii\helpers\Url;
 use yii\helpers\Html;
 use app\assets\AdminAsset;
+use yii\widgets\Menu;
 
 AdminAsset::register($this);
 ?>
@@ -28,6 +30,20 @@ AdminAsset::register($this);
 <?php $this->beginBody() ?>
 
 <div class="wrap">
+    <div class="top-menu">
+        <ul>
+            <?php foreach(Yii::$app->params['admin']['topMenu'] as $key=>$top):?>
+            <li>
+                <a href="<?= Url::to($top['url']);?>"><?= $top['label'];?></a>
+            </li>
+            <?php endforeach;?>
+        </ul>
+    </div>
+    <div class="sub-menu">
+        <?= Menu::widget([
+                'items'=>$this->params['menus']
+        ]);?>
+    </div>
     <div class="container">
 
         <?= $content ?>

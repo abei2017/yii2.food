@@ -47,3 +47,4 @@ v1.0开发中
 - 2017-09-15 使用migrate建立数据表&后台建立&db配置项解析 http://nai8.me/course-video.html?id=178
 - 2017-09-18 后台登录模块的实现 http://nai8.me/course-video.html?id=179
 - 2017-09-20 后台资源文件的规划 http://nai8.me/course-video.html?id=180
+- 2017-09-27 后台菜单的设计 http://nai8.me/course-video.html?id=181

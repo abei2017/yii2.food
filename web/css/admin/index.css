@@ -5,6 +5,16 @@ body {
     background:#f3f3f3;
 }
 
+ul,li,p,h1,h2,h3 {
+    padding:0;
+    margin:0;
+    list-style:none;
+}
+
+a {
+    text-decoration: none;
+}
+
 .form {
     margin:15px;
 }
@@ -51,4 +61,50 @@ body {
     margin:150px auto;
     background:#fff;
     padding:25px;
+}
+
+/* 菜单 */
+.top-menu {
+    background:#333333;
+    font-size:14px;
+    height:50px;
+}
+
+.top-menu ul {
+    width:1080px;
+    margin:0 auto;
+    height:50px;
+}
+.top-menu ul li {
+    height:50px;
+    line-height:50px;
+    display:inline-block;
+    padding:0 15px 0 0;
+}
+.top-menu ul li a {
+    color:#eeeeee;
+}
+
+.sub-menu {
+    background:#FFF;
+    border-bottom:#eee solid 1px;
+}
+.sub-menu ul {
+    width:1080px;
+    margin:0 auto;
+    height:40px;
+}
+.sub-menu ul li {
+    height:40px;
+    line-height:40px;
+    padding-right:15px;
+}
+
+.sub-menu ul li a {
+    font-size:13px;
+    color:#333;
+}
+
+.sub-menu ul li.active a {
+    font-weight:bold;
 }
