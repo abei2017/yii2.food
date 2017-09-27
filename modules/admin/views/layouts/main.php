@@ -39,11 +39,13 @@ AdminAsset::register($this);
             <?php endforeach;?>
         </ul>
     </div>
+    <?php if(isset($this->params['menus'])):?>
     <div class="sub-menu">
         <?= Menu::widget([
                 'items'=>$this->params['menus']
         ]);?>
     </div>
+    <?php endif;?>
     <div class="container">
 
         <?= $content ?>
