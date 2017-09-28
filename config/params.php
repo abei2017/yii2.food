@@ -16,6 +16,7 @@ return [
             ['label'=>'菜品','url'=>['/admin/dish/index']],
             ['label'=>'订单','url'=>['/admin/order/index']],
             ['label'=>'会员','url'=>['/admin/user/index']],
+            ['label'=>'管理员','url'=>['/admin/administrator/index'],'icon'=>'fa-address-book-o'],
             ['label'=>'网站设置','url'=>['/admin/set/index']],
         ]
     ]

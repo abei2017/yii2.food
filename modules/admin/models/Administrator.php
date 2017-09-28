@@ -30,7 +30,7 @@ class Administrator extends \yii\db\ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['adminname'], 'required'],
+            [['adminname','password'], 'required'],
             [['created_at', 'updated_at'], 'integer'],
             [['adminname', 'password'], 'string', 'max' => 32],
         ];

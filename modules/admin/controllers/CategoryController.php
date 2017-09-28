@@ -9,8 +9,8 @@
 namespace app\modules\admin\controllers;
 
 
-class CategoryController extends N8Base
-{
+class CategoryController extends N8Base {
+
     public function actionIndex(){
     }
 

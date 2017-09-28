@@ -31,4 +31,13 @@ class N8Base extends Controller {
 
         $this->view->params['menus'] = $this->menus;
     }
+
+    /**
+     *
+     * @param array $errors
+     * @return string
+     */
+    protected function formatErrors($errors = []){
+        return implode('<br/>',array_shift($errors));
+    }
 }

@@ -34,7 +34,12 @@ AdminAsset::register($this);
         <ul>
             <?php foreach(Yii::$app->params['admin']['topMenu'] as $key=>$top):?>
             <li>
-                <a href="<?= Url::to($top['url']);?>"><?= $top['label'];?></a>
+                <a href="<?= Url::to($top['url']);?>">
+                    <?php if(isset($top['icon'])):?>
+                    <i class="fa <?= $top['icon'];?>"></i>
+                    <?php endif;?>
+                    <?= $top['label'];?>
+                </a>
             </li>
             <?php endforeach;?>
         </ul>
