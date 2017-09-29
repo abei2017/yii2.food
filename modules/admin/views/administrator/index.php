@@ -24,10 +24,13 @@ use yii\grid\ActionColumn;
             'class' => ActionColumn::className(),
             'header'=>'操作',
             'headerOptions'=>['width'=>'80'],
-            'template' => '{view} {delete}',
+            'template' => '{view} {update} {delete}',
             'buttons'=>[
                 'view'=>function($url, $model, $key){
                     return "<a href='{$url}'>详情</a>";
+                },
+                'update'=>function($url, $model, $key){
+                    return "<a href='{$url}'>更新</a>";
                 },
                 'delete'=>function($url, $model, $key){
                     return "<a href='javascript:;' data-url='{$url}' class='_delete'>删除</a>";

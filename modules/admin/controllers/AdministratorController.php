@@ -59,4 +59,53 @@ class AdministratorController extends N8Base {
             return ['done'=>false,'error'=>$e->getMessage()];
         }
     }
+
+    public function actionCreate(){
+        $model = new Administrator();
+        $model->scenario = 'create';
+
+        if(Yii::$app->request->isPost){
+            $model->load(Yii::$app->request->post());
+            $model->password = Yii::$app->security->generatePasswordHash($model->password);
+            if($model->save()){
+                return $this->redirect(['/admin/administrator/index']);
+            }
+        }
+
+        $this->menus = $this->cMenu['admin'];
+        $this->initActiveMenu('administrator-create');
+
+        return $this->render('create',[
+            'model'=>$model
+        ]);
+    }
+
+    public function actionUpdate($id){
+        $model = Administrator::findOne($id);
+        $model->scenario = 'update';
+
+        if(Yii::$app->request->isPost){
+            $model->load(Yii::$app->request->post());
+
+            //password
+            if(empty($model->password)){
+                $model->password = $model->oldAttributes['password'];
+            }else{
+                $model->password = Yii::$app->security->generatePasswordHash($model->password);
+            }
+
+            if($model->save()){
+                return $this->redirect(['/admin/administrator/index']);
+            }
+        }
+
+        $this->menus = $this->cMenu['admin'];
+        $menu = ['label'=>'更新管理员','url'=>['/admin/administrator/update','id'=>$id]];
+        $this->initActiveMenu('administrator-update',$menu);
+
+        $model->password = '';
+        return $this->render('create',[
+            'model'=>$model
+        ]);
+    }
 }
