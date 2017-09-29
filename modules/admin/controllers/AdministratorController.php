@@ -17,17 +17,27 @@ use yii\web\Response;
 
 class AdministratorController extends N8Base {
 
+    public $cMenu = [
+        'admin'=>[
+            'administrator-index'=>['label'=>'管理员列表','url'=>['/admin/administrator/index']],
+            'administrator-create'=>['label'=>'新建管理员','url'=>['/admin/administrator/create']],
+        ]
+    ];
+
     /**
      * 列表
      * @return string
      */
     public function actionIndex(){
 
-        $query = Administrator::find();
+        $query = Administrator::find()->orderBy(['id'=>SORT_DESC]);
 
         $dataProvider = new ActiveDataProvider([
             'query'=>$query
         ]);
+
+        $this->menus = $this->cMenu['admin'];
+        $this->initActiveMenu('administrator-index');
 
         return $this->render('index',[
             'dataProvider'=>$dataProvider

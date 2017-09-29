@@ -6,7 +6,11 @@ use yii\grid\ActionColumn;
 <?= GridView::widget([
     'dataProvider'=>$dataProvider,
     'columns'=>[
-        'id',
+        [
+            'label'=>'编号',
+            'headerOptions'=>['width'=>'60'],
+            'attribute'=>'id'
+        ],
         'adminname',
         [
             'label'=>'生成时间',
@@ -18,6 +22,8 @@ use yii\grid\ActionColumn;
         ],
         [
             'class' => ActionColumn::className(),
+            'header'=>'操作',
+            'headerOptions'=>['width'=>'80'],
             'template' => '{view} {delete}',
             'buttons'=>[
                 'view'=>function($url, $model, $key){

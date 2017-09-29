@@ -1,36 +1,44 @@
 body {
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
     outline: none;
-    background:#f3f3f3;
+    background: #f3f3f3;
+    font-family: STHeiti, 'WenQuanYi Micro Hei', SimSun, sans-serif;
 }
 
-ul,li,p,h1,h2,h3 {
-    padding:0;
-    margin:0;
-    list-style:none;
+ul, li, p, h1, h2, h3 {
+    padding: 0;
+    margin: 0;
+    list-style: none;
 }
 
 a {
     text-decoration: none;
 }
 
+.container {
+    width: 1030px;
+    padding: 25px;
+    background: #ffffff;
+    margin: 25px auto;
+}
+
 .form {
-    margin:15px;
+    margin: 15px;
 }
 
 .form-group {
-    margin-bottom:10px;
-    position:relative;
-    padding-left:70px;
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 70px;
 }
 
 .form-group .control-label {
-    display:block;
-    width:70px;
-    position:absolute;
-    top:4px;
-    left:0;
+    display: block;
+    width: 70px;
+    position: absolute;
+    top: 4px;
+    left: 0;
 }
 
 .form-button {
@@ -48,7 +56,8 @@ a {
     background-color: #fff;
     background-image: none;
     border: 1px solid #ccc;
-    border-radius: 4px;outline: none;
+    border-radius: 4px;
+    outline: none;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
     -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
     -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
@@ -57,54 +66,158 @@ a {
 
 /* default-login */
 .default-login {
-    width:400px;
-    margin:150px auto;
-    background:#fff;
-    padding:25px;
+    width: 400px;
+    margin: 150px auto;
+    background: #fff;
+    padding: 25px;
 }
 
 /* 菜单 */
 .top-menu {
-    background:#333333;
-    font-size:14px;
-    height:50px;
+    background:#007fff;
+    font-size: 14px;
+    height: 50px;
 }
 
 .top-menu ul {
-    width:1080px;
-    margin:0 auto;
-    height:50px;
+    width: 1080px;
+    margin: 0 auto;
+    height: 50px;
 }
+
 .top-menu ul li {
-    height:50px;
-    line-height:50px;
-    display:inline-block;
-    padding:0 25px 0 0;
+    height: 50px;
+    line-height: 50px;
+    display: inline-block;
+    padding: 0 25px 0 0;
 }
+
 .top-menu ul li a {
-    color:#eeeeee;
+    color: #FFFFFF;
 }
 
 .sub-menu {
-    background:#FFF;
-    border-bottom:#eee solid 1px;
+    margin-bottom: 10px;
+    background: #323330;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .3)
 }
+
 .sub-menu ul {
-    width:1080px;
-    margin:0 auto;
-    height:40px;
-}
-.sub-menu ul li {
-    height:40px;
-    line-height:40px;
-    padding-right:15px;
+    width: 1080px;
+    margin: 0 auto
 }
 
-.sub-menu ul li a {
-    font-size:13px;
-    color:#333;
+.sub-menu li {
+    display: inline-block;
+    border-left: 0;
+    padding: 5px 0;
+    border-bottom: #323330 solid 2px
 }
 
-.sub-menu ul li.active a {
-    font-weight:bold;
+.sub-menu li:first-child {
+    border-radius: 0
+}
+
+.sub-menu li:last-child {
+    border-radius: 0
+}
+
+.sub-menu li a {
+    border-right: #000 solid 1px;
+    display: inline-block;
+    padding: 7px 15px 4px 15px;
+    color: #007fff;
+    text-align: center;
+    text-decoration: none;
+    font-size: 13px
+}
+
+.sub-menu li.active {
+    border-bottom-color: #fff
+}
+
+.sub-menu li.active a {
+    color: #FFFFFF;
+}
+
+.table {
+    font-size: 14px;
+    margin-bottom: 10px;
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #E1E6EB;
+    color: #333333;
+    margin-top: 15px;
+    border-spacing: 0;
+}
+
+.table .h_a {
+    border-top: 0 none;
+}
+
+.table th {
+    padding: 10px;
+    border: 1px solid #E1E6EB;
+    background-color: #F5F6FA;
+    color: #333333;
+    text-align: left;
+    font-weight: 700
+}
+
+.table th.center {
+    text-align: center;
+}
+
+.table td {
+    padding: 8px;
+    color: #333333;
+    border: 1px solid #E1E6EB;
+    vertical-align: middle;
+    line-height: 1.6;
+    text-align: left;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.table td.center {
+    text-align: center;
+}
+
+.table td a {
+    display: inline;
+    margin-left: 2px;
+    margin-right: 2px;
+    color: blue;
+    border-bottom: blue solid 1px;
+}
+
+.table td a:hover {
+    color: #000000;
+    text-decoration: underline;
+}
+
+.table tr:nth-child(odd) {
+    background-color: #FFF;
+}
+
+.table td.td-avatars {
+}
+
+.table td.td-avatars a {
+    display: inline-block;
+}
+
+.table td.td-avatars a img {
+    width: 32px;
+    height: 32px;
+    border-radius: 32px;
+}
+
+.table tr.tr-active td {
+    font-weight: 700;
+    color: #000000;
+}
+
+.table tr:nth-child(2n) {
+    background-color: #f6f8fa;
 }

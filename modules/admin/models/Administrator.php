@@ -4,6 +4,7 @@ namespace app\modules\admin\models;
 
 use Yii;
 use yii\web\IdentityInterface;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "{{%administrator}}".
@@ -24,13 +25,15 @@ class Administrator extends \yii\db\ActiveRecord implements IdentityInterface
         return '{{%administrator}}';
     }
 
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['adminname','password'], 'required'],
+            [['adminname'], 'required'],
+            ['password','required'],
             [['created_at', 'updated_at'], 'integer'],
             [['adminname', 'password'], 'string', 'max' => 32],
         ];
