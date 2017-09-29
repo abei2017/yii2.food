@@ -32,6 +32,22 @@ class AdministratorController extends N8Base {
 
         $query = Administrator::find()->orderBy(['id'=>SORT_DESC]);
 
+        if($_GET){
+            foreach($_GET as $key=>$val){
+                if(!empty($val)){
+                    switch ($key){
+                        case 'adminname':
+                            $query->andWhere(['adminname'=>$val]);
+                            break;
+                        case 'id':
+                            $query->andWhere(['id'=>$val]);
+                            break;
+                    }
+                }
+
+            }
+        }
+
         $dataProvider = new ActiveDataProvider([
             'query'=>$query
         ]);
@@ -40,7 +56,8 @@ class AdministratorController extends N8Base {
         $this->initActiveMenu('administrator-index');
 
         return $this->render('index',[
-            'dataProvider'=>$dataProvider
+            'dataProvider'=>$dataProvider,
+            'currentGetInput'=>$_GET
         ]);
     }
 

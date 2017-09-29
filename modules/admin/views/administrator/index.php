@@ -3,6 +3,15 @@ use yii\grid\GridView;
 use yii\grid\ActionColumn;
 ?>
 
+<form action="" method="get">
+    <input type="hidden" value="admin/administrator/index" name="r">
+    <label for="">管理员ID</label>
+    <input type="text" name="id" value="<?= @$currentGetInput['id'];?>">
+    <label for="">管理员名称</label>
+    <input type="text" name="adminname" value="<?= isset($currentGetInput['adminname']) ? $currentGetInput['adminname'] : '';?>">
+    <button>搜索</button>
+</form>
+
 <?= GridView::widget([
     'dataProvider'=>$dataProvider,
     'columns'=>[
@@ -23,7 +32,7 @@ use yii\grid\ActionColumn;
         [
             'class' => ActionColumn::className(),
             'header'=>'操作',
-            'headerOptions'=>['width'=>'80'],
+            'headerOptions'=>['width'=>'120'],
             'template' => '{view} {update} {delete}',
             'buttons'=>[
                 'view'=>function($url, $model, $key){

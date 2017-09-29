@@ -24,6 +24,7 @@ class AdminAsset extends AssetBundle
     ];
     public $js = [
         'https://cdn.bootcss.com/seajs/3.0.2/sea.js',
+//        'js/artDialog/dialog.js',
         'js/admin/jsmart.js'
     ];
     public $depends = [

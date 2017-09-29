@@ -1,5 +1,7 @@
 define(function(require, exports, module) {
 
+    var init = require('init');
+
     /**
      * 管理员登录
      */
