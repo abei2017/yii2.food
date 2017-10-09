@@ -20,18 +20,8 @@ define(function(require, exports, module) {
 
     exports.delete = function(){
         $('._delete').click(function(){
-            if(!confirm('您确定要删除么？')){
-                return false;
-            }
-
             var url = $(this).attr('data-url');
-            $.getJSON(url,function(d){
-                if(d.done === true){
-                    window.location.reload();
-                }else{
-                    alert(d.error);
-                }
-            });
+            init.confirm(url,"您确定要删除么？",true);
         });
     }
 
