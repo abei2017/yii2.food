@@ -49,3 +49,4 @@ v1.0开发中
 - 2017-09-20 后台资源文件的规划 http://nai8.me/course-video.html?id=180
 - 2017-09-27 后台菜单的设计 http://nai8.me/course-video.html?id=181
 - 2017-09-28 管理员模块实现 - 列表和删除 http://nai8.me/course-video.html?id=182
+- 2017-09-29 管理员模块实现 - 搜索 http://nai8.me/course-video.html?id=184
