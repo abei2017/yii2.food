@@ -85,4 +85,47 @@ class DishController extends N8Base {
             'smalls'=>$smalls
         ]);
     }
+
+    public function actionUpdate($id){
+        $model = Dish::findOne($id);
+
+        if(Yii::$app->request->isPost){
+            $model->load(Yii::$app->request->post());
+            if($model->save()){
+                return $this->redirect(['/admin/dish/index']);
+            }
+        }
+
+        $smalls = [];
+        if($model->cat_id > 0){
+            $smalls = ArrayHelper::map(Category::find()->where(['fid'=>$model->cat_id])->all(),'id','name');
+        }
+
+
+        $this->menus = $this->cMenu['default'];
+        $this->initActiveMenu('dish-create');
+
+        return $this->render('create',[
+            'model'=>$model,
+            'cats'=>ArrayHelper::map(Category::find()->where(['fid'=>0])->all(),'id','name'),
+            'smalls'=>$smalls
+        ]);
+    }
+
+    /**
+     * 删除一个菜品
+     * @param $id integer 菜品ID
+     * @return array
+     */
+    public function actionDelete($id){
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        try {
+            $model = Dish::findOne($id);
+            $model->delete();
+
+            return ['done'=>true];
+        }catch(Exception $e){
+            return ['done'=>false,'error'=>$e->getMessage()];
+        }
+    }
 }

@@ -17,7 +17,7 @@ a {
 }
 
 .container {
-    width: 1030px;
+    width: 930px;
     padding: 25px;
     background: #ffffff;
     margin: 25px auto;
@@ -89,6 +89,8 @@ a {
     padding: 25px;
 }
 
+
+
 /* 菜单 */
 .top-menu {
     background:#007fff;
@@ -97,7 +99,7 @@ a {
 }
 
 .top-menu ul {
-    width: 1080px;
+    width: 980px;
     margin: 0 auto;
     height: 50px;
 }
@@ -120,7 +122,7 @@ a {
 }
 
 .sub-menu ul {
-    width: 1080px;
+    width: 980px;
     margin: 0 auto
 }
 
@@ -146,7 +148,8 @@ a {
     color: #007fff;
     text-align: center;
     text-decoration: none;
-    font-size: 13px
+    font-size: 13px;
+
 }
 
 .sub-menu li.active {
@@ -676,3 +679,4 @@ a {
 .dialog-message .ui-dialog-grid .ui-dialog-body {font-size:12px;background:#333333;color:#ffffff;padding:15px 25px;border-radius: 5px;}
 
 .hide {display:none;}
+.summary {font-size:14px;color:#666666;}

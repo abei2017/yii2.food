@@ -73,6 +73,7 @@ use yii\widgets\ActiveForm;
 <script type="text/javascript">
     seajs.use('dish',function(dish){
         dish.deleteAll();
+        dish.delete();
     });
 </script>
 
