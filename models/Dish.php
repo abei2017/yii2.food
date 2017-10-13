@@ -40,7 +40,7 @@ class Dish extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'cat_id', 'small_cat_id'], 'required'],
+            [['title', 'cat_id', 'small_cat_id','image','price'], 'required'],
             [['price'], 'number'],
             [['cat_id', 'small_cat_id', 'created_at', 'updated_at'], 'integer'],
             [['title'], 'string', 'max' => 64],

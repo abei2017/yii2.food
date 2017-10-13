@@ -91,4 +91,15 @@ class CategoryController extends N8Base {
             return ['done'=>false,'error'=>$e->getMessage()];
         }
     }
+
+    public function actionChildren($fid){
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        try {
+            $children = Category::find()->where(['fid'=>$fid])->asArray()->all();
+
+            return ['done'=>true,'data'=>$children];
+        }catch(Exception $e){
+            return ['done'=>false,'error'=>$e->getMessage()];
+        }
+    }
 }

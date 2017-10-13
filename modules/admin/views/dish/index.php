@@ -43,6 +43,9 @@ use yii\widgets\ActiveForm;
         ],
         [
             'attribute'=>'updated_at',
+            'value'=>function($data){
+                return date('Y-m-d H:i:s',$data->updated_at);
+            },
             'footerOptions'=>['class'=>'hide']
         ],
         [
