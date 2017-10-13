@@ -16,8 +16,8 @@ v1.0开发中
 # 功能列表
 - 后台
   - 管理员 doing
-  - 菜品分类
-  - 菜品
+  - 菜品分类 done
+  - 菜品 done
   - 订单管理
   - 会员管理
   - 设置功能
@@ -51,3 +51,5 @@ v1.0开发中
 - 2017-09-28 管理员模块实现 - 列表和删除 http://nai8.me/course-video.html?id=182
 - 2017-09-29 管理员模块实现 - 搜索 http://nai8.me/course-video.html?id=184
 - 2017-10-09 菜品分类的实现 - AR关联 http://nai8.me/course-video.html?id=185
+- 2017-10-12 菜品管理 - 对GridView的深度学习 http://nai8.me/course-video.html?id=186
+- 2017-10-13 菜品管理 - 统一上传接口方案 http://nai8.me/course-video.html?id=187
