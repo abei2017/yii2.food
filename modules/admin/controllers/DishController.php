@@ -54,4 +54,18 @@ class DishController extends N8Base {
             return ['done'=>false,'error'=>$e->getMessage()];
         }
     }
+
+    /**
+     * 新建菜品
+     */
+    public function actionCreate(){
+        $model = new Dish();
+
+        $this->menus = $this->cMenu['default'];
+        $this->initActiveMenu('dish-create');
+
+        return $this->render('create',[
+            'model'=>$model
+        ]);
+    }
 }

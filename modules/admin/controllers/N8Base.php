@@ -40,4 +40,6 @@ class N8Base extends Controller {
     protected function formatErrors($errors = []){
         return implode('<br/>',array_shift($errors));
     }
+
+
 }

@@ -60,6 +60,7 @@ class Dish extends \yii\db\ActiveRecord
             'small_cat_id' => '所属小类',
             'created_at' => '生成时间',
             'updated_at' => '更新时间',
+            'image'=>'菜品头图',
         ];
     }
 
