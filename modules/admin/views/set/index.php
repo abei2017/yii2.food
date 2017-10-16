@@ -29,6 +29,12 @@ use yii\grid\ActionColumn;
                 return date('Y-m-d H:i:s',$model->log_time);
             }
         ],
-        'message:html:内容'
+        [
+            'label'=>'内容',
+            'format'=>'html',
+            'value'=>function($model){
+                return nl2br($model->message);
+            }
+        ],
     ],
 ]);?>

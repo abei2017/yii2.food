@@ -25,6 +25,6 @@ class HelloController extends Controller {
      * @param string $message the message to be echoed.
      */
     public function actionIndex($message = 'hello world') {
-
+        echo $message;
     }
 }
