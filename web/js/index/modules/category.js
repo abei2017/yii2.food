@@ -3,6 +3,8 @@
  */
 define(function(require, exports, module) {
 
+    var dish = require('dish');
+
     /**
      * 得到一个二级分类下的所有菜品
      */
@@ -22,6 +24,8 @@ define(function(require, exports, module) {
                 var output = compiled.fetch(d);
 
                 $('#dish-box').empty().html(output);
+
+                dish.addToCart();
             });
         });
     }

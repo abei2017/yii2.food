@@ -1,16 +1,26 @@
 <?php
 use yii\helpers\Url;
 $this->title = '';
+use yii\widgets\ActiveForm;
 ?>
 
 <div class="site-index">
     <div class="cart-box">
         <h1>购物车</h1>
+        <?php
+        $form = ActiveForm::begin([
+            'action'=>'javascript:;',
+            'id'=>'Form'
+        ]);
+        ?>
         <div id="cart-items" class="cart-items">
 
         </div>
+        <?php
+            ActiveForm::end();
+        ?>
         <ul class="btns">
-            <li>微信支付</li>
+            <li data-url="<?= Url::to(['/cart/submit']);?>" id="wxBtn">微信支付</li>
         </ul>
     </div>
     <div class="category-box" id="category-box">
@@ -30,13 +40,21 @@ $this->title = '';
     </div>
 </div>
 
+<script id="cartItemTpl" type="text/x-jsmart-tmpl">
+    <div class="item-in-cart">
+        <div>{$title}</div>
+        <div>
+            <input type="text" name="quantity[{$id}]" value="1"/>
+        </div>
+    </div>
+</script>
 
 <script id="dishTpl" type="text/x-jsmart-tmpl">
     {if $data|count eq 0}
         <div class="empty">暂无菜品</div>
     {else}
         {foreach $data as $key=>$dish}
-        <div class="dish">
+        <div class="dish _dish" data-title="{$dish.title}" data-price="{$dish.price}" data-id="{$dish.id}">
             <div class="title">{$dish.title}</div>
             <div class="price">
                 ￥{$dish.price}
@@ -62,7 +80,8 @@ $this->title = '';
         $('#category-box').height(h-30);
     };
 
-    seajs.use(['category'],function(category){
+    seajs.use(['category','cart'],function(category,cart){
         category.dishes();
+        cart.submitCart();
     });
 </script>

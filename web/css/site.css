@@ -114,3 +114,10 @@ a {
     font-size:14px;
     color:#EF1F12;
 }
+
+.cart-items {}
+.cart-items .dish-in-cart {
+    margin:15px 15px 0 15px;
+    background:#FFFFFF;
+    padding:15px;
+}
