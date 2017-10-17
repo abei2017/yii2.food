@@ -23,7 +23,7 @@ class AppAsset extends AssetBundle
     ];
     public $js = [
         'https://cdn.bootcss.com/seajs/3.0.2/sea.js',
-        'js/admin/jsmart.js'
+        'js/index/jsmart.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',

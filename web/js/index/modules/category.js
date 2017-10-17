@@ -10,6 +10,19 @@ define(function(require, exports, module) {
         $('._category').click(function(){
             $('._category').removeClass('active');
             $(this).addClass('active');
+
+            var url = $(this).attr('data-url');
+            $.getJSON(url,{},function(d){
+                if(d.done === false){
+                    alert(d.error);
+                }
+
+                var content = $('#dishTpl').html();
+                var compiled = new jSmart(content);
+                var output = compiled.fetch(d);
+
+                $('#dish-box').empty().html(output);
+            });
         });
     }
 });

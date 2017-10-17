@@ -5,6 +5,19 @@ body {
     margin:0;
 }
 
+.clear {
+    clear: both;
+    font-size:0;
+    height:0;
+}
+
+.empty {
+    padding:25px 0;
+    text-align:center;
+    color:#999999;
+    font-size:14px;
+}
+
 ul,li,h1,h2,h3,h4,h5,h6,p {
     margin:0;
     padding:0;
@@ -23,8 +36,29 @@ a {
 
 .site-index .cart-box {
     width:300px;
+    position:relative;
 }
-
+.site-index .cart-box h1 {
+    background:#007fff;
+    padding:10px;
+    text-align:center;
+    color:#FFF;
+    font-size:16px;
+}
+.site-index .cart-box .btns {
+    position:absolute;
+    width:300px;
+    bottom:0;
+    left:0;
+    height:60px;
+    background:#44b549;
+}
+.site-index .cart-box .btns li {
+    height:60px;
+    text-align:center;
+    color:#FFF;
+    line-height:60px;
+}
 .site-index .category-box {
     width:220px;
     background:#F2F2F2;
@@ -46,6 +80,7 @@ a {
 .site-index .category-box ul .item {
     border-bottom:#f2f2f2 solid 1px;
     padding:10px;
+    cursor:pointer;
     display:block;
 }
 .site-index .category-box ul .active {
@@ -56,4 +91,26 @@ a {
 
 .site-index .dish-box {
     -webkit-box-flex:1;
+}
+
+.site-index .dish-box .dish {
+    margin:15px 0 0 15px;
+    background:#fff;
+    border-radius:5px;
+    padding:15px;
+    float:left;
+    width:200px;
+}
+.site-index .dish-box .dish:hover {
+    background:#fffdc3;
+    cursor:pointer;
+}
+.site-index .dish-box .dish .title {
+    font-size:16px;
+    font-weight:bold;
+}
+.site-index .dish-box .dish .price {
+    font-family:'Arial';
+    font-size:14px;
+    color:#EF1F12;
 }
