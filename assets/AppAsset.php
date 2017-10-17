@@ -22,10 +22,11 @@ class AppAsset extends AssetBundle
         'css/site.css',
     ];
     public $js = [
+        'https://cdn.bootcss.com/seajs/3.0.2/sea.js',
+        'js/admin/jsmart.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
     ];
 
     public $jsOptions = [

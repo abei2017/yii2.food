@@ -6,6 +6,7 @@ $db = require(__DIR__ . '/db.php');
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
+    'name'=>'快餐系统',
     'bootstrap' => ['log'],
     'language' => 'zh-CN',
     'timeZone'=>'Asia/Chongqing',

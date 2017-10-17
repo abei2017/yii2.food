@@ -18,7 +18,7 @@ AdminAsset::register($this);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
+    <title><?= $this->title ? Html::encode($this->title) : Yii::$app->name; ?></title>
     <?php $this->head() ?>
     <script type="text/javascript">
         seajs.config({
