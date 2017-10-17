@@ -23,8 +23,8 @@ v1.0开发中
   - 设置功能
 - 客户端
   - PC
-    - 订餐页面
-    - 分类功能
+    - 订餐页面 done
+    - 分类功能 dong
     - 购物车
     - 下单页面
     - 浏览器打印功能
@@ -42,7 +42,7 @@ v1.0开发中
 # 视频支持网站
 阿北兄弟连 http://nai8.me
 
-# 配套视频课程(更新到第8节)
+# 配套视频课程(更新到第14节)
 - 2017-09-14 前导课 http://nai8.me/course-video.html?id=177
 - 2017-09-15 使用migrate建立数据表&后台建立&db配置项解析 http://nai8.me/course-video.html?id=178
 - 2017-09-18 后台登录模块的实现 http://nai8.me/course-video.html?id=179
@@ -53,3 +53,7 @@ v1.0开发中
 - 2017-10-09 菜品分类的实现 - AR关联 http://nai8.me/course-video.html?id=185
 - 2017-10-12 菜品管理 - 对GridView的深度学习 http://nai8.me/course-video.html?id=186
 - 2017-10-13 菜品管理 - 统一上传接口方案 http://nai8.me/course-video.html?id=187
+- 2017-10-13 菜品管理 - 新建&更新（二级联动） http://nai8.me/course-video.html?id=188
+- 2017-10-15 后台设置 - 日志功能（数据库存储） http://nai8.me/course-video.html?id=189
+- 2017-10-15 后台设置 - 日志的清理（命令行运行） http://nai8.me/course-video.html?id=193
+- 2017-10-16 PC端 - 分类和菜品 http://nai8.me/course-video.html?id=190
