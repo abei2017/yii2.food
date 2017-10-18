@@ -19,6 +19,10 @@ use yii\widgets\ActiveForm;
         <?php
             ActiveForm::end();
         ?>
+        <div class="total-money">
+            合计：
+            <strong id="totalMoney">0.00</strong>
+        </div>
         <ul class="btns">
             <li data-url="<?= Url::to(['/cart/submit']);?>" id="wxBtn">微信支付</li>
         </ul>
@@ -41,10 +45,17 @@ use yii\widgets\ActiveForm;
 </div>
 
 <script id="cartItemTpl" type="text/x-jsmart-tmpl">
-    <div class="item-in-cart">
-        <div>{$title}</div>
-        <div>
-            <input type="text" name="quantity[{$id}]" value="1"/>
+    <div class="dish-in-cart" id="dish-in-cart-{$id}">
+        <div class="title">
+        {$title}
+        <span id="item-total-price-{$id}" class="item-total-price">
+            {$price}
+        </span>
+        </div>
+        <div class="quantity-box">
+            <i class="down _down" data-id="{$id}">-</i>
+            <input type="text" readonly id="quantity-{$id}" class="_number" data-price="{$price}" name="quantity[{$id}]" value="1"/>
+            <i class="up _up" data-id="{$id}">+</i>
         </div>
     </div>
 </script>

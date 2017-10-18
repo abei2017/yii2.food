@@ -45,6 +45,21 @@ a {
     color:#FFF;
     font-size:16px;
 }
+.site-index .cart-box .total-money {
+    position:absolute;
+    width:270px;
+    padding:0 15px;
+    text-align:right;
+    bottom:60px;
+    line-height:40px;
+    left:0;
+    height:40px;
+    background:#EEEEEE;
+}
+.site-index .cart-box .total-money strong {
+    font-size:18px;
+    color:#ff6600;
+}
 .site-index .cart-box .btns {
     position:absolute;
     width:300px;
@@ -120,4 +135,47 @@ a {
     margin:15px 15px 0 15px;
     background:#FFFFFF;
     padding:15px;
+}
+
+.cart-items .dish-in-cart .title {
+    font-size:16px;
+    font-weight:bold;
+    padding-bottom:10px;
+    border-bottom:#eee solid 1px;
+    margin-bottom:10px;
+}
+
+.cart-items .dish-in-cart .title .item-total-price {
+    float:right;
+    color:#FF6600;
+    font-style:italic;
+    position: relative;
+    font-weight:normal;
+    top:2px;
+}
+
+.cart-items .dish-in-cart .quantity-box {
+    text-align: center;
+    line-height: 27px;
+}
+.cart-items .dish-in-cart .quantity-box input {
+    width:60px;
+    border:#000 solid 2px;
+    border-radius:5px;
+    padding:5px 0;
+    margin:0 10px;
+    font-size:18px;
+    color:#000;
+    font-weight:bold;
+    text-align:center;
+}
+.cart-items .dish-in-cart .quantity-box i {
+    cursor: pointer;
+    font-size: 42px;
+    font-weight: bold;
+    font-style:normal;
+    color: #008de1;
+    position: relative;
+    top: 8px;
+    display:inline-block;
 }
