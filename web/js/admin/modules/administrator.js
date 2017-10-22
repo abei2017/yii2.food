@@ -10,7 +10,7 @@ define(function(require, exports, module) {
             var url = $(this).attr('data-url');
             $.post(url,$('#Form').serializeArray(),function(d){
                 if(d.done === true){
-                    window.location.href = '/index.php?r=admin';
+                    window.location.href = d.data;
                 }else{
                     alert(d.error);
                 }

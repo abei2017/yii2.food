@@ -6,6 +6,7 @@ use app\modules\admin\models\Administrator;
 use Yii;
 use yii\base\Exception;
 use yii\helpers\Json;
+use yii\helpers\Url;
 
 /**
  * Default controller for the `admin` module
@@ -57,7 +58,7 @@ class DefaultController extends N8Base
 
                 Yii::$app->admin->login($check);
 
-                return Json::encode(['done'=>true]);
+                return Json::encode(['done'=>true,'data'=>Url::to(['/admin'])]);
             }catch(Exception $e){
                 return Json::encode(['done'=>false,'error'=>$e->getMessage()]);
             }

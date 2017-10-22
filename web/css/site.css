@@ -180,3 +180,9 @@ a {
     top: 8px;
     display:inline-block;
 }
+
+
+.order-pay {
+    width:350px;
+    margin:100px auto;
+}

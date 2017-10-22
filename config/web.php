@@ -44,19 +44,19 @@ $config = [
                 [
                     'class' => 'yii\log\DbTarget',
                     'levels' => ['error', 'warning'],
-                    'categories'=>['dish']
+                    'categories'=>['order']
                 ],
             ],
         ],
         'db' => $db,
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '/<controller:\w+>-<action:\w+>.html'=>'/<controller>/<action>',
+                '/admin/<controller:\w+>-<action:\w+>.html'=>'/admin/<controller>/<action>',
             ],
         ],
-        */
     ],
     'params' => $params,
 

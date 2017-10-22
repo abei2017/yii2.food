@@ -16,7 +16,7 @@ define(function(require, exports, module) {
                     return false;
                 }
 
-                //todo
+                window.location.href = d.data;
             },'json');
         });
     }

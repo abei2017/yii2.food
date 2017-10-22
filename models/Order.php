@@ -56,4 +56,8 @@ class Order extends \yii\db\ActiveRecord
             'transaction_id' => 'Transaction ID',
         ];
     }
+
+    public function getDishes(){
+        return $this->hasMany(OrderDish::className(),['order_id'=>'id']);
+    }
 }

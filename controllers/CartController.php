@@ -13,6 +13,7 @@ use app\models\Order;
 use app\models\OrderDish;
 use Yii;
 use yii\base\Exception;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\Response;
 
@@ -58,9 +59,7 @@ class CartController extends Controller {
             $model->pay_id = "o-{$model->id}-".rand(1000,9999);
             $model->update();
 
-            //todo 生成微信二维码
-
-            return ['done'=>true];
+            return ['done'=>true,'data'=>Url::to(['/order/pay','id'=>$model->id])];
         }catch(Exception $e){
             return ['done'=>false,'error'=>$e->getMessage()];
         }
