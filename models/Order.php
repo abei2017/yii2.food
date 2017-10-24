@@ -50,8 +50,8 @@ class Order extends \yii\db\ActiveRecord
             'pay_id' => 'Pay ID',//o-id-xxx
             'state' => 'State',
             'created_at' => 'Created At',
-            'money' => 'Money',
-            'quantity' => 'Quantity',
+            'money' => '订单总额',
+            'quantity' => '购买数量',
             'paid_at' => 'Paid At',
             'transaction_id' => 'Transaction ID',
         ];
@@ -59,5 +59,15 @@ class Order extends \yii\db\ActiveRecord
 
     public function getDishes(){
         return $this->hasMany(OrderDish::className(),['order_id'=>'id']);
+    }
+
+    public function stateTxt(){
+        $arr = [
+            'unpay'=>'未付款',
+            'pay'=>'已付款',
+            'fail'=>'失败订单'
+        ];
+
+        return $arr[$this->state];
     }
 }

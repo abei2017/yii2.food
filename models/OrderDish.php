@@ -51,4 +51,8 @@ class OrderDish extends \yii\db\ActiveRecord
             'created_at' => 'Created At',
         ];
     }
+
+    public function getDish(){
+        return $this->hasOne(Dish::className(),['id'=>'dish_id']);
+    }
 }

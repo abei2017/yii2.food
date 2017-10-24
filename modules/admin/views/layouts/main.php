@@ -7,6 +7,7 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 use app\assets\AdminAsset;
 use yii\widgets\Menu;
+use yii\widgets\Breadcrumbs;
 
 AdminAsset::register($this);
 ?>
@@ -51,8 +52,11 @@ AdminAsset::register($this);
         ]);?>
     </div>
     <?php endif;?>
+    <?= Breadcrumbs::widget([
+        'homeLink'=>['label'=>'控制台','url'=>['/admin']],
+        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+    ]);?>
     <div class="container">
-
         <?= $content ?>
     </div>
 </div>

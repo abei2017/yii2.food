@@ -20,7 +20,7 @@ a {
     width: 1030px;
     padding: 25px;
     background: #ffffff;
-    margin: 25px auto;
+    margin: 15px auto 25px auto;
 }
 
 .container h1 {
@@ -680,3 +680,19 @@ a {
 
 .hide {display:none;}
 .summary {font-size:14px;color:#666666;}
+
+.breadcrumb {
+    list-style: none;
+    font-size:14px;
+    width:1050px;
+    margin:0 auto;
+    margin-top:15px;
+}
+.breadcrumb a {color:#4d4d4d;}
+.breadcrumb li {display: inline-block;}
+.breadcrumb li.active {font-weight: bold;}
+.breadcrumb > li + li:before {
+    padding: 0 5px;
+    color: #ccc;
+    content: "/\00a0";
+}
