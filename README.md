@@ -11,22 +11,22 @@ v1.0开发中
 
 # 演示地址
 - 前台 http://food.nai8.me
-- 管理后台 http://food.nai8.me/index.php?r=admin  账号admin/123456
+- 管理后台 http://food.nai8.me/admin  账号admin/123456
 
 # 功能列表
 - 后台
   - 管理员 doing
   - 菜品分类 done
   - 菜品 done
-  - 订单管理
+  - 订单管理 doing
   - 会员管理
   - 设置功能
 - 客户端
   - PC
     - 订餐页面 done
     - 分类功能 dong
-    - 购物车
-    - 下单页面
+    - 购物车 done
+    - 下单页面 done
     - 浏览器打印功能
   - 微信小程序
   - APP
@@ -57,3 +57,7 @@ v1.0开发中
 - 2017-10-15 后台设置 - 日志功能（数据库存储） http://nai8.me/course-video.html?id=189
 - 2017-10-15 后台设置 - 日志的清理（命令行运行） http://nai8.me/course-video.html?id=193
 - 2017-10-16 PC端 - 分类和菜品 http://nai8.me/course-video.html?id=190
+- 2017-10-16 PC端 - 购物车功能 http://nai8.me/course-video.html?id=194
+- 2017-10-17 EasyWechat的安装和配置 http://nai8.me/course-video.html?id=191
+- 2017-10-22 订单支付（重点） http://nai8.me/course-video.html?id=192
+- 2017-10-24 后台订单管理的实现 http://nai8.me/course-video.html?id=195
