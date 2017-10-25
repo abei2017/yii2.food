@@ -56,7 +56,10 @@ $this->params['breadcrumbs'] = [
             'template' => '{ispay}',
             'buttons'=>[
                 'ispay'=>function($url, $model, $key){
-                    return "<a href='javascript:;' data-url='{$url}' class='_is_pay'>付款核查</a>";
+                    if($model->state != 'unpay'){
+                        return "<a href='javascript:;' data-url='{$url}' class='_is_pay'>付款核查</a>";
+                    }
+                    return false;
                 }
             ]
         ]
