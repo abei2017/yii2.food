@@ -53,14 +53,20 @@ $this->params['breadcrumbs'] = [
             'class' => ActionColumn::className(),
             'header'=>'操作',
             'headerOptions'=>['width'=>'120'],
-            'template' => '{ispay}',
+            'template' => '{ispay}{close}',
             'buttons'=>[
                 'ispay'=>function($url, $model, $key){
                     if($model->state == 'unpay'){
                         return "<a href='javascript:;' data-url='{$url}' class='_is_pay'>付款核查</a>";
                     }
                     return false;
-                }
+                },
+                'close'=>function($url, $model, $key){
+                    if(in_array($model->state,['unpay','fail'])){
+                        return "<a href='javascript:;' data-url='{$url}' class='_close'>关闭它</a>";
+                    }
+                    return false;
+                },
             ]
         ]
     ],
@@ -69,5 +75,6 @@ $this->params['breadcrumbs'] = [
 <script type="text/javascript">
     seajs.use('order',function(order){
         order.isPay();
+        order.close();
     });
 </script>

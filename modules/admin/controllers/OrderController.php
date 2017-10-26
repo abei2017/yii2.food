@@ -74,4 +74,31 @@ class OrderController extends N8Base {
         }
 
     }
+
+    public function actionClose($id){
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        try {
+            $model = Order::findOne($id);
+            if(in_array($model->state,['unpay','fail']) == false){
+                throw new Exception('当前订单状态不允许关闭');
+            }
+
+            $wxApp = new Application(Yii::$app->params['wx']);
+            $payment = $wxApp->payment;
+
+            $result = $payment->close($model->pay_id);
+            if($result->return_code == 'SUCCESS' && $result->result_code == 'SUCCESS'){
+                //todo
+                $model->state = 'close';
+                $model->update();
+
+                return ['done'=>true,'data'=>'关闭成功'];
+            }else{
+                throw new Exception("通讯：{$result->return_msg}<br/>业务:{$result->err_code_des }");
+            }
+
+        }catch(Exception $e){
+            return ['done'=>false,'error'=>$e->getMessage()];
+        }
+    }
 }

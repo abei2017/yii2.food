@@ -39,6 +39,7 @@ class OrderController extends Controller {
             'detail'=>"订单编号#{$model->id}",
             'out_trade_no'=>$model->pay_id,
             'total_fee'=>$totalFee,
+            'time_expire'=>date('YmdHis',time()+300),
             'notify_url'=>Yii::$app->urlManager->createAbsoluteUrl(['/order/notify'])// order-notify.html
         ];
 
@@ -108,7 +109,7 @@ class OrderController extends Controller {
         Yii::$app->response->format = Response::FORMAT_JSON;
         try {
             $model = Order::findOne($id);
-            if($model->state == 'unpay'){
+            if(in_array($model->state,['unpay','close','fail'])){
                 throw new Exception('订单未支付');
             }
 

@@ -65,7 +65,8 @@ class Order extends \yii\db\ActiveRecord
         $arr = [
             'unpay'=>'未付款',
             'pay'=>'已付款',
-            'fail'=>'失败订单'
+            'fail'=>'失败订单',
+            'close'=>'已经关闭订单',
         ];
 
         return $arr[$this->state];
