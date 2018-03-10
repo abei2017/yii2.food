@@ -1,6 +1,7 @@
 <?php
 use yii\widgets\ActiveForm;
 use yii\grid\GridView;
+use yii\grid\ActionColumn;
 use yii\helpers\Html;
 ?>
 
@@ -46,5 +47,25 @@ use yii\helpers\Html;
                 return date('Y-m-d H:i:s',$model->updated_at);
             }
         ],
+        [
+            'class' => ActionColumn::className(),
+            'header'=>'操作',
+            'headerOptions'=>['width'=>'120'],
+            'template' => '{update-wechat}{delete-wechat}',
+            'buttons'=>[
+                'update-wechat'=>function($url, $model, $key){
+                    return Html::a('编辑',$url);
+                },
+                'delete-wechat'=>function($url, $model, $key){
+                    return Html::a('删除','javascript:;',['class'=>'_delete','data-url'=>$url]);
+                },
+            ]
+        ]
     ]
 ]);?>
+
+<script type="text/javascript">
+    seajs.use('promotion',function(promotion){
+        promotion.deleteWechat();
+    });
+</script>

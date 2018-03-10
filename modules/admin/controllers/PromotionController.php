@@ -59,4 +59,36 @@ class PromotionController extends N8Base {
             'dishes'=>ArrayHelper::map(Dish::find()->all(),'id','title')
         ]);
     }
+
+    public function actionUpdateWechat($id){
+        $model = WechatPromotion::findOne($id);
+
+        if(Yii::$app->request->isPost){
+            $model->load(Yii::$app->request->post());
+            if($model->save()){
+                return $this->redirect(['/admin/promotion/wechat']);
+            }
+        }
+
+        $this->menus = $this->cMenu['default'];
+        $menu = ['label'=>'更新微信特惠','url'=>['/admin/promotion/update-wechat','id'=>$id]];
+        $this->initActiveMenu('promotion-update-wechat',$menu);
+
+        return $this->render('update-wechat',[
+            'model'=>$model,
+            'dishes'=>ArrayHelper::map(Dish::find()->all(),'id','title')
+        ]);
+    }
+
+    public function actionDeleteWechat($id){
+        Yii::$app->response->format = 'json';
+        try {
+            $model = WechatPromotion::findOne($id);
+            $model->delete();
+
+            return ['done'=>true,'data'=>'删除成功'];
+        }catch(Exception $e){
+            return ['done'=>false,'error'=>$e->getMessage()];
+        }
+    }
 }
