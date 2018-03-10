@@ -44,6 +44,20 @@ $this->params['breadcrumbs'] = [
         'quantity',
         'money',
         [
+            'label'=>'订单类型',
+            'format' => 'html',
+            'value'=>function($model){
+                switch ($model->type){
+                    case 'normal':
+                        return '普通订单';
+                        break;
+                    case 'wx':
+                        return '微信特惠订单<br/>'.$model->type_str;
+                        break;
+                }
+            }
+        ],
+        [
             'label'=>'订单状态',
             'value'=>function($model){
                 return $model->stateTxt();
