@@ -15,4 +15,6 @@ define(function (require, exports, module) {
             init.confirm(url, "您确定要关闭么？", true);
         });
     };
+
+
 });

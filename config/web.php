@@ -55,6 +55,8 @@ $config = [
             'rules' => [
                 '/<controller:\w+>-<action:\w+>.html'=>'/<controller>/<action>',
                 '/admin/<controller:\w+>-<action:\w+>.html'=>'/admin/<controller>/<action>',
+                '/wechat/<controller:\w+>-<action:\w+>.html'=>'/wechat/<controller>/<action>',
+
             ],
         ],
     ],
@@ -64,6 +66,10 @@ $config = [
         'admin' => [
             'class' => 'app\modules\admin\Module',
             'layout'=>'main'
+        ],
+        'wechat' => [
+            'class' => 'app\modules\wechat\Module',
+            'layout' => 'main'
         ],
     ],
 ];

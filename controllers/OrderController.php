@@ -8,6 +8,8 @@
 
 namespace app\controllers;
 
+use app\models\OrderDish;
+use app\models\User;
 use Da\QrCode\Contracts\LabelInterface;
 use Da\QrCode\Label;
 use Yii;
@@ -88,6 +90,20 @@ class OrderController extends Controller {
                 $model->state = 'pay';
                 $model->paid_at = time();
                 $model->transaction_id = $order_arr['transaction_id'];
+
+                //
+                $openId = $order_arr['openid'];
+                $user = User::find()->where(['open_id'=>$openId])->one();
+                if($user == false){
+                    // new
+                    $user = new User();
+                    $user->open_id = $openId;
+                    $user->created_at = time();
+                    $user->save();
+                }
+
+                $model->user_id = $user->id;
+
             } else {
                 $model->state = 'fail';
             }
@@ -113,7 +129,19 @@ class OrderController extends Controller {
                 throw new Exception('订单未支付');
             }
 
-            return ['done'=>true,'data'=>$model->id];
+            $dishes = OrderDish::find()->where(['order_id'=>$id])->all();
+            $return = [];
+            foreach($dishes as $dish){
+                $item = [
+                    'title'=>$dish->dish->title,
+                    'price'=>$dish->dish->price,
+                    'quantity'=>$dish->quantity
+                ];
+
+                $return[] = $item;
+            }
+
+            return ['done'=>true,'data'=>$model->id,'dishes'=>$return];
         }catch(Exception $e){
             return ['done'=>false,'error'=>$e->getMessage(),'data'=>$model->id];
         }
