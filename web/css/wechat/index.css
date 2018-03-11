@@ -1,0 +1,30 @@
+body {
+    background:#F5F5F5;
+}
+div.wechat-items {padding:.75em;}
+div.wechat-items .item {background: #fff;padding:.75em;}
+div.wechat-items .item .item-info {display:-webkit-box;}
+div.wechat-items .item .item-info .image {width:5em;}
+div.wechat-items .item .item-info .image img {border:#eee solid 1px;width:5em;}
+div.wechat-items .item .item-info .info {-webkit-box-flex: 1;padding-left:.75em;}
+div.wechat-items .item .item-info .info h1 {font-size:1em;}
+div.wechat-items .item .item-info .info h1 span {font-weight: normal;color:#666;}
+div.wechat-items .item .item-info .info .price {}
+div.wechat-items .item .item-info .info .price strong{font-size:1.2em;font-weight:normal;color:#FF6600;}
+div.wechat-items .item .item-info .info .price span {font-size:.875em;color:#999;text-decoration:line-through ;}
+div.wechat-items .item .item-buy {margin-top:.75em;}
+div.wechat-items .item .item-buy .quantity-box {display:-webkit-box;}
+div.wechat-items .item .item-buy .quantity-box .up {width:4em;text-align:left;}
+div.wechat-items .item .item-buy .quantity-box .ipt-box {margin:0 1em;-webkit-box-flex:1;text-align:center;}
+div.wechat-items .item .item-buy .quantity-box .ipt-box input {border-radius:3em;border:#777 solid 1px;padding:.35em;width:80%;text-align:center;font-size:1.3em;}
+div.wechat-items .item .item-buy .quantity-box .down {width:4em;text-align:right;}
+div.wechat-items .item .item-buy .quantity-box .up button,div.wechat-items .item .item-buy .quantity-box .down button {
+    width:3em;
+    height:2.5em;
+    background: #000;color:#fff;
+    border:0;
+
+}
+div.wechat-items .item .item-buy .tip {font-size:.875em;color:#999;text-align: center;}
+div.wechat-items .item .item-buy .btn-box {padding:.5em 2em 0 2em;}
+div.wechat-items .item .item-buy .btn-box button {font-size:15px;}
