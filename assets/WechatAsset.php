@@ -27,6 +27,7 @@ class WechatAsset extends AssetBundle
         'https://cdn.bootcss.com/seajs/3.0.2/sea.js',
     ];
     public $depends = [
+        'yii\web\YiiAsset',
     ];
 
     public $jsOptions = [

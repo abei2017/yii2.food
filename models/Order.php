@@ -54,6 +54,7 @@ class Order extends \yii\db\ActiveRecord
             'quantity' => '购买数量',
             'paid_at' => 'Paid At',
             'transaction_id' => 'Transaction ID',
+            'type'=>'订单类型'
         ];
     }
 

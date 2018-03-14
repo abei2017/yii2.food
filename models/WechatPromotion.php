@@ -68,4 +68,5 @@ class WechatPromotion extends \yii\db\ActiveRecord
     public function getDish(){
         return $this->hasOne(Dish::className(),['id'=>'dish_id']);
     }
+
 }
