@@ -32,11 +32,36 @@ class PromotionController extends WechatBase {
         try {
             $this->oauth();
 
+            /**
+             * 参数验证
+             * 特惠model的验证
+             * 库存的验证
+             * 每单最大量限制的验证
+             */
             //  微信端特惠商品记录ID
-            $id = Yii::$app->request->get('id');
-            $quantity = Yii::$app->request->get('quantity');
+            $id = (int)Yii::$app->request->get('id',0);
+            $quantity = (int)Yii::$app->request->get('quantity',0);
+
+            if($id <= 0 OR $quantity <= 0){
+                throw new Exception("参数错误");
+            }
 
             $model = WechatPromotion::findOne($id);
+            if($model == false){
+                throw new Exception("参数错误");
+            }
+
+            if($model->state == 0){
+                throw new Exception("此特惠当前已经下线，无法购买。");
+            }
+
+            if($model->number > 0 && ($model->number - $model->sold_number) < $quantity){
+                throw new Exception("库存不够了");
+            }
+
+            if($model->max_number > 0 && $model->max_number < $quantity){
+                throw new Exception("超出每单最大购买量。");
+            }
 
             // order
             $o = new MOrder();

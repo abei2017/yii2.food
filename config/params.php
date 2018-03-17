@@ -17,6 +17,7 @@ return [
             ['label'=>'订单','url'=>['/admin/order/index'],'icon'=>'fa-cart-arrow-down'],
             ['label'=>'会员','url'=>['/admin/user/index'],'icon'=>'fa-users'],
             ['label'=>'管理员','url'=>['/admin/administrator/index'],'icon'=>'fa-address-book-o'],
+            ['label'=>'促销','url'=>['/admin/promotion/index'],'icon'=>'fa-address-book-o'],
             ['label'=>'网站设置','url'=>['/admin/set/index'],'icon'=>'fa-th'],
         ]
     ],
@@ -32,9 +33,9 @@ return [
         /**
          * 账号基本信息，请从微信公众平台/开放平台获取
          */
-        'app_id'  => '#',         // AppID
-        'secret'  => '#',     // AppSecret
-        'token'   => '#',          // Token
+        'app_id'  => 'wx94560776dc61566e',         // AppID
+        'secret'  => 'bbbde2664af26e6ff2439091ebcb70c3',     // AppSecret
+        'token'   => 'abc3166886',          // Token
         'aes_key' => '',                    // EncodingAESKey，安全模式下请一定要填写！！！
         /**
          * 日志配置
@@ -57,14 +58,14 @@ return [
          */
         'oauth' => [
             'scopes'   => ['snsapi_userinfo'],
-            'callback' => '/wechat/default-oauth.html',
+            'callback' => '',
         ],
         /**
          * 微信支付
          */
         'payment' => [
-            'merchant_id'        => '#',
-            'key'                => '#',
+            'merchant_id'        => '1398504802',
+            'key'                => '51clingleapder18980402woshiiwbao',
             'cert_path'          => '', // XXX: 绝对路径！！！！
             'key_path'           => '',      // XXX: 绝对路径！！！！
         ],
