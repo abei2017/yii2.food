@@ -47,13 +47,18 @@ $this->params['breadcrumbs'] = [
             'label'=>'订单类型',
             'format' => 'html',
             'value'=>function($model){
-                switch ($model->type){
-                    case 'normal':
-                        return '普通订单';
-                        break;
-                    case 'wx':
-                        return '微信特惠订单<br/>'.$model->type_str;
-                        break;
+                if($model->type == 'normal'){
+                    return '普通订单';
+                }elseif ($model->type == 'wx'){
+                    $str = "微信特惠订单";
+                    $arr = explode('#',$model->type_str);
+                    $str .= "<br/>取餐码：{$arr[0]}";
+
+                    if(isset($arr[1])){
+                        $str .= "<br/>取餐时间：".date('Y-m-d H:i:s',$arr[1]);
+                    }
+
+                    return $str;
                 }
             }
         ],

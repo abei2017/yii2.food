@@ -10,7 +10,7 @@ define(function(require, exports, module) {
     exports.checkPay = function(id){
         var url = '/order-check.html';
         $.getJSON(url,{id:id},function(d){
-            if(d.done == true){
+            if(d.done === true){
                 $('#order-pay').empty().html('支付成功，开始打印。。。');
                 var content = $('#printTpl').html();
                 var compiled = new jSmart(content);
