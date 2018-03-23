@@ -21,6 +21,7 @@ class PromotionController extends N8Base {
         'default'=>[
             'promotion-index'=>['label'=>'促销简报','url'=>['/admin/promotion/index']],
             'promotion-wechat'=>['label'=>'微信端特惠','url'=>['/admin/promotion/wechat']],
+            'promotion-coupon'=>['label'=>'优惠券','url'=>['/admin/promotion/coupon']],
         ]
     ];
 

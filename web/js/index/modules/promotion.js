@@ -20,7 +20,7 @@ define(function(require, exports, module) {
                     LODOP.SET_PRINT_PAGESIZE(3,720,0,"");
                     LODOP.ADD_PRINT_HTM("0mm","0mm","100%","100%",output);
 
-                    LODOP.PREVIEW();
+                    LODOP.PRINT();
 
                     window.location.href = "/";
                 }else{

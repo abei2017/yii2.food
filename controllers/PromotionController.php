@@ -28,6 +28,7 @@ class PromotionController extends Controller {
                     throw new Exception('取餐码不能为空');
                 }
 
+                // type_str = "code#19192912"
                 $check = Order::find()
                     ->where(['type'=>'wx'])->andWhere("substring(`type_str`,1,8) = :code",[':code'=>$code])->one();
                 if($check == false){
