@@ -45,7 +45,7 @@ class CouponItem extends \yii\db\ActiveRecord
         return [
             [['number', 'coupon_id'], 'required'],
             [['coupon_id', 'user_id', 'used_at', 'order_id', 'created_at', 'updated_at'], 'integer'],
-            [['number'], 'string', 'max' => 8],
+            [['number'], 'unique'],
         ];
     }
 
@@ -64,5 +64,30 @@ class CouponItem extends \yii\db\ActiveRecord
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
+    }
+
+    static public function initCouponItems($couponId){
+        $coupon = Coupon::findOne($couponId);
+        if($coupon == false){
+            return false;
+        }
+
+        $currentTotal = CouponItem::find()->where(['coupon_id'=>$couponId])->count();
+        while ($currentTotal < $coupon->quantity){
+            $number = Yii::$app->security->generateRandomString(8);
+            $check = CouponItem::find()->where(['number'=>$number])->one();
+            if($check){
+                continue;
+            }
+
+            //add
+            $new = new CouponItem();
+            $new->number = $number;
+            $new->coupon_id = $couponId;
+            $new->user_id = $new->used_at = 0;
+            if($new->save()){
+                $currentTotal++;
+            }
+        }
     }
 }

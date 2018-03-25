@@ -9,6 +9,7 @@
 namespace app\modules\admin\controllers;
 
 use app\models\Coupon;
+use app\models\CouponItem;
 use app\models\Dish;
 use app\models\WechatPromotion;
 use Yii;
@@ -104,6 +105,7 @@ class PromotionController extends N8Base {
             $model->end_at = empty($model->end_at) ? 0 : strtotime($model->end_at);
 
             if($model->save()){
+                CouponItem::initCouponItems($model->id);
                 return $this->redirect(['/admin/promotion/coupon']);
             }
         }
@@ -129,6 +131,7 @@ class PromotionController extends N8Base {
             $model->end_at = empty($model->end_at) ? 0 : strtotime($model->end_at);
 
             if($model->save()){
+                CouponItem::initCouponItems($model->id);
                 return $this->redirect(['/admin/promotion/coupon']);
             }
         }
