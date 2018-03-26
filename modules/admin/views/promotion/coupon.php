@@ -13,7 +13,7 @@ use yii\helpers\Html;
     <?= $form->field($model,'name')->textInput();?>
     <?= $form->field($model,'quantity')->textInput();?>
     <?= $form->field($model,'price')->textInput();?>
-    <?= $form->field($model,'begin_at')->textInput();?>
+    <?= $form->field($model,'begin_at')->textInput()->hint('时间格式为xxxx-xx-xx xx:xx:xx');?>
     <?= $form->field($model,'end_at')->textInput();?>
 
     <button type="submit">确定</button>
@@ -41,7 +41,7 @@ use yii\helpers\Html;
                 }
             ],
             'created_at:datetime:开始时间',
-            'updated_at:datetime:开始时间',
+            'updated_at:datetime:最近更新',
             [
                 'class' => ActionColumn::className(),
                 'header'=>'操作',
