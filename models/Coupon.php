@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use Carbon\Carbon;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -46,6 +47,7 @@ class Coupon extends \yii\db\ActiveRecord
             [['quantity', 'created_at', 'updated_at'], 'integer'],
             [['price'], 'number'],
             [['name'], 'string', 'max' => 32],
+            [['begin_at'],'checkBeginAt']
         ];
     }
 
@@ -65,4 +67,17 @@ class Coupon extends \yii\db\ActiveRecord
             'updated_at' => '最近更新时间',
         ];
     }
+
+    public function checkBeginAt($attr,$params){
+        $dt = Carbon::hasFormat($this->$attr,"Y-m-d H:i:s");
+        if($dt){
+            $this->begin_at = strtotime($this->$attr);
+            return true;
+        }else{
+            $this->addError("begin_at","时间格式不正确");
+        }
+    }
+
+
+
 }

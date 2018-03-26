@@ -101,13 +101,14 @@ class PromotionController extends N8Base {
         if(Yii::$app->request->isPost){
             $model->load(Yii::$app->request->post());
 
-            $model->begin_at = strtotime($model->begin_at);
+//            $model->begin_at = strtotime($model->begin_at);
             $model->end_at = empty($model->end_at) ? 0 : strtotime($model->end_at);
 
             if($model->save()){
                 CouponItem::initCouponItems($model->id);
                 return $this->redirect(['/admin/promotion/coupon']);
             }
+
         }
 
         $query = Coupon::find();
@@ -152,6 +153,13 @@ class PromotionController extends N8Base {
         Yii::$app->response->format = 'json';
         try {
             $model = Coupon::findOne($id);
+
+            $check = CouponItem::find()->where(['coupon_id'=>$id])->andWhere(['>','user_id',0])->count();
+            if($check>0){
+                throw new Exception("不允许删除，已经有人领取了某些优惠券");
+            }
+
+            CouponItem::deleteAll(['coupon_id'=>$id]);
             $model->delete();
 
             return ['done'=>true,'data'=>'删除成功'];
