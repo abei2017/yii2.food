@@ -38,4 +38,5 @@ class Module extends \yii\base\Module
             return false;
         }
     }
+
 }

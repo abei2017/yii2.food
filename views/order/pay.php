@@ -7,7 +7,11 @@
 </object>
 
 <div class="order-pay" id="order-pay">
+    <?php if($model->state == 'pay'):?>
+        支付成功，开始打印。。
+    <?php else:?>
     <img src="<?= $qrcode->writeDataUri();?>" alt="">
+    <?php endif;?>
 </div>
 
 

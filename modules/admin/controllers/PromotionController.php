@@ -116,6 +116,9 @@ class PromotionController extends N8Base {
             'query' => $query
         ]);
 
+        $this->menus = $this->cMenu['default'];
+        $this->initActiveMenu('promotion-coupon');
+
         return $this->render('coupon',[
             'model'=>$model,
             'dataProvider'=>$dataProvider
@@ -169,4 +172,24 @@ class PromotionController extends N8Base {
     }
 
 
+    /**
+     * 一个优惠券活动的券列表
+     * @param $id
+     * @return string
+     */
+    public function actionCouponItems($id){
+        $query = CouponItem::find()->where(['coupon_id'=>$id]);
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query
+        ]);
+
+        $this->menus = $this->cMenu['default'];
+        $menu = ['label'=>'券列表','url'=>['/admin/promotion/coupon-items','id'=>$id]];
+        $this->initActiveMenu('promotion-coupon-items',$menu);
+
+        return $this->render('coupon-items',[
+            'dataProvider'=>$dataProvider
+        ]);
+    }
 }

@@ -46,13 +46,16 @@ use yii\helpers\Html;
                 'class' => ActionColumn::className(),
                 'header'=>'操作',
                 'headerOptions'=>['width'=>'120'],
-                'template' => '{update-coupon}{delete-coupon}',
+                'template' => '{update-coupon}{delete-coupon}{coupon-items}',
                 'buttons'=>[
                     'update-coupon'=>function($url, $model, $key){
                         return Html::a('编辑',$url);
                     },
                     'delete-coupon'=>function($url, $model, $key){
                         return Html::a('删除','javascript:;',['class'=>'_delete','data-url'=>$url]);
+                    },
+                    'coupon-items'=>function($url, $model, $key){
+                        return Html::a('券列表',$url);
                     },
                 ]
             ]

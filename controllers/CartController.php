@@ -8,6 +8,8 @@
 
 namespace app\controllers;
 
+use app\models\Coupon;
+use app\models\CouponItem;
 use app\models\Dish;
 use app\models\Order;
 use app\models\OrderDish;
@@ -25,6 +27,24 @@ class CartController extends Controller {
             $quantityList = Yii::$app->request->post('quantity');
             if(empty($quantityList)){
                 throw new Exception('您至少要选择一个菜品');
+            }
+
+            $couponNumber = Yii::$app->request->post('coupon',null);
+            if(!empty($couponNumber)){
+                //  check
+                $couponItem = CouponItem::find()->where(['number'=>$couponNumber])->one();
+                if($couponItem == false){
+                    throw new Exception('优惠券无效');
+                }
+
+                if($couponItem->used_at > 0){
+                    throw new Exception("该优惠券已经被使用了");
+                }
+
+                $coupon = Coupon::findOne($couponItem->coupon_id);
+                if($coupon->end_at > 0 && $coupon->end_at <= time()){
+                    throw new Exception("已经过期了");
+                }
             }
 
             $model = new Order();
@@ -54,7 +74,33 @@ class CartController extends Controller {
                 $quantityTotal += $val;
             }
 
-            $model->money = $moneyTotal;
+            //  优惠券
+            $couponPreferentialMoney = 0;
+            if(!empty($couponNumber)){
+                $couponPreferentialMoney = $coupon->price > $moneyTotal ? $moneyTotal : $coupon->price;
+                $couponItem->order_id = $model->id;
+                $couponItem->used_money = $couponPreferentialMoney;
+                $couponItem->update();
+            }
+
+            $model->preferential_money = $couponPreferentialMoney;
+            $model->money = $moneyTotal - $couponPreferentialMoney;
+
+            if($model->money == 0){
+                $model->paid_at = time();
+                $model->state = 'pay';
+
+                /**
+                 *  在优惠直接可以支付的情况下
+                 *  各优惠方式的逻辑处理
+                 */
+                //  优惠券
+                if(!empty($couponNumber)){
+                    $couponItem->used_at = time();
+                    $couponItem->update();
+                }
+            }
+
             $model->quantity = $quantityTotal;
             $model->pay_id = "o-{$model->id}-".rand(1000,9999);
             $model->update();

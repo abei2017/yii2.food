@@ -73,7 +73,7 @@ $config = [
         ],
         'wechat' => [
             'class' => 'app\modules\wechat\Module',
-            'layout' => 'main'
+            'layout' => 'main',
         ],
     ],
 ];

@@ -16,6 +16,7 @@ use yii\widgets\ActiveForm;
         <div id="cart-items" class="cart-items">
 
         </div>
+        <input type="hidden" id="coupon" name="coupon" value="">
         <?php
             ActiveForm::end();
         ?>
@@ -25,6 +26,9 @@ use yii\widgets\ActiveForm;
         </div>
         <ul class="btns">
             <li data-url="<?= Url::to(['/cart/submit']);?>" id="wxBtn">微信支付</li>
+            <li class="coupon">
+                <a href="javascript:;" class="_add_coupon">优惠券</a>
+            </li>
         </ul>
     </div>
     <div class="category-box" id="category-box">
@@ -94,5 +98,6 @@ use yii\widgets\ActiveForm;
     seajs.use(['category','cart'],function(category,cart){
         category.dishes();
         cart.submitCart();
+        cart.addCoupon();
     });
 </script>

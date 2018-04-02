@@ -8,6 +8,7 @@
 
 namespace app\modules\admin\controllers;
 
+use app\models\CouponItem;
 use Yii;
 use app\models\Order;
 use app\models\OrderDish;
@@ -100,5 +101,24 @@ class OrderController extends N8Base {
         }catch(Exception $e){
             return ['done'=>false,'error'=>$e->getMessage()];
         }
+    }
+
+    /**
+     * 一个订单的优惠信息
+     * @param $id
+     * @return string
+     */
+    public function actionPreferential($id){
+        $model = Order::findOne($id);
+
+        $couponItem = CouponItem::find()->where(['order_id'=>$id])->one();
+
+        $this->menus = $this->cMenu['order'];
+        $menu = ['label'=>'订单优惠信息','url'=>['/admin/order/preferential','id'=>$id]];
+        $this->initActiveMenu('order-preferential',$menu);
+
+        return $this->render('preferential',[
+            'couponItem'=>$couponItem
+        ]);
     }
 }

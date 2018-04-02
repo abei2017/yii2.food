@@ -15,9 +15,20 @@ define(function(require, exports, module) {
                     alert(d.error);
                     return false;
                 }
-
                 window.location.href = d.data;
+
+
             },'json');
+        });
+    };
+
+    /**
+     * 添加优惠券
+     */
+    exports.addCoupon = function(){
+        $('._add_coupon').click(function(){
+            var v = prompt("请输入您的优惠券编码","");
+            $('#coupon').val(v);
         });
     }
 });

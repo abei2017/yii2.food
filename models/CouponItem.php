@@ -63,6 +63,7 @@ class CouponItem extends \yii\db\ActiveRecord
             'order_id' => 'Order ID',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
+            'used_money'=>'使用金额'
         ];
     }
 
@@ -89,5 +90,9 @@ class CouponItem extends \yii\db\ActiveRecord
                 $currentTotal++;
             }
         }
+    }
+
+    public function getCoupon(){
+        return $this->hasOne(Coupon::className(),['id'=>'coupon_id']);
     }
 }

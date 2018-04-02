@@ -8,6 +8,7 @@
 
 namespace app\controllers;
 
+use app\models\CouponItem;
 use app\models\OrderDish;
 use app\models\User;
 use Da\QrCode\Contracts\LabelInterface;
@@ -29,6 +30,11 @@ class OrderController extends Controller {
 
     public function actionPay($id){
         $model = Order::findOne($id);
+        if($model->state == 'pay'){
+            return $this->render('pay',[
+                'model'=>$model
+            ]);
+        }
 
         $config = Yii::$app->params['wx'];
         $wxApp = new Application($config);
@@ -106,6 +112,13 @@ class OrderController extends Controller {
 
             } else {
                 $model->state = 'fail';
+            }
+
+            //  优惠
+            if($model->preferential_money > 0){
+                $couponItem = CouponItem::find()->where(['order_id'=>$model->id])->one();
+                $couponItem->used_at = time();
+                $couponItem->update();
             }
 
             $model->update();

@@ -42,7 +42,13 @@ $this->params['breadcrumbs'] = [
             }
         ],
         'quantity',
-        'money',
+        [
+            'label' => '订单金额',
+            'format' => 'raw',
+            'value' => function($model){
+                return "实付金额：{$model->money}<br/>优惠金额：{$model->preferential_money}";
+            }
+        ],
         [
             'label'=>'订单类型',
             'format' => 'html',
@@ -72,7 +78,7 @@ $this->params['breadcrumbs'] = [
             'class' => ActionColumn::className(),
             'header'=>'操作',
             'headerOptions'=>['width'=>'120'],
-            'template' => '{ispay}{close}',
+            'template' => '{ispay}<br/>{close}{preferential}',
             'buttons'=>[
                 'ispay'=>function($url, $model, $key){
                     if($model->state == 'unpay'){
@@ -86,6 +92,9 @@ $this->params['breadcrumbs'] = [
                     }
                     return false;
                 },
+                'preferential'=>function($url, $model, $key){
+                    return \yii\helpers\Html::a('优惠',$url);
+                }
             ]
         ]
     ],
