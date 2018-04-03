@@ -43,21 +43,21 @@ v1.0开发中
 阿北兄弟连 http://nai8.me
 
 # 配套视频课程(更新到第18节)
-- 2017-09-14 前导课 http://nai8.me/course-video.html?id=177
-- 2017-09-15 使用migrate建立数据表&后台建立&db配置项解析 http://nai8.me/course-video.html?id=178
-- 2017-09-18 后台登录模块的实现 http://nai8.me/course-video.html?id=179
-- 2017-09-20 后台资源文件的规划 http://nai8.me/course-video.html?id=180
-- 2017-09-27 后台菜单的设计 http://nai8.me/course-video.html?id=181
-- 2017-09-28 管理员模块实现 - 列表和删除 http://nai8.me/course-video.html?id=182
-- 2017-09-29 管理员模块实现 - 搜索 http://nai8.me/course-video.html?id=184
-- 2017-10-09 菜品分类的实现 - AR关联 http://nai8.me/course-video.html?id=185
-- 2017-10-12 菜品管理 - 对GridView的深度学习 http://nai8.me/course-video.html?id=186
-- 2017-10-13 菜品管理 - 统一上传接口方案 http://nai8.me/course-video.html?id=187
-- 2017-10-13 菜品管理 - 新建&更新（二级联动） http://nai8.me/course-video.html?id=188
-- 2017-10-15 后台设置 - 日志功能（数据库存储） http://nai8.me/course-video.html?id=189
-- 2017-10-15 后台设置 - 日志的清理（命令行运行） http://nai8.me/course-video.html?id=193
-- 2017-10-16 PC端 - 分类和菜品 http://nai8.me/course-video.html?id=190
-- 2017-10-16 PC端 - 购物车功能 http://nai8.me/course-video.html?id=194
-- 2017-10-17 EasyWechat的安装和配置 http://nai8.me/course-video.html?id=191
-- 2017-10-22 订单支付（重点） http://nai8.me/course-video.html?id=192
-- 2017-10-24 后台订单管理的实现 http://nai8.me/course-video.html?id=195
+- 2017-09-14 前导课 http://nai8.me/video/view.html?id=177
+- 2017-09-15 使用migrate建立数据表&后台建立&db配置项解析 http://nai8.me/video/view.html?id=178
+- 2017-09-18 后台登录模块的实现 http://nai8.me/video/view.html?id=179
+- 2017-09-20 后台资源文件的规划 http://nai8.me/video/view.html?id=180
+- 2017-09-27 后台菜单的设计 http://nai8.me/video/view.html?id=181
+- 2017-09-28 管理员模块实现 - 列表和删除 http://nai8.me/video/view.html?id=182
+- 2017-09-29 管理员模块实现 - 搜索 http://nai8.me/video/view.html?id=184
+- 2017-10-09 菜品分类的实现 - AR关联 http://nai8.me/video/view.html?id=185
+- 2017-10-12 菜品管理 - 对GridView的深度学习 http://nai8.me/video/view.html?id=186
+- 2017-10-13 菜品管理 - 统一上传接口方案 http://nai8.me/video/view.html?id=187
+- 2017-10-13 菜品管理 - 新建&更新（二级联动） http://nai8.me/video/view.html?id=188
+- 2017-10-15 后台设置 - 日志功能（数据库存储） http://nai8.me/video/view.html?id=189
+- 2017-10-15 后台设置 - 日志的清理（命令行运行） http://nai8.me/video/view.html?id=193
+- 2017-10-16 PC端 - 分类和菜品 http://nai8.me/video/view.html?id=190
+- 2017-10-16 PC端 - 购物车功能 http://nai8.me/video/view.html?id=194
+- 2017-10-17 EasyWechat的安装和配置 http://nai8.me/video/view.html?id=191
+- 2017-10-22 订单支付（重点） http://nai8.me/video/view.html?id=192
+- 2017-10-24 后台订单管理的实现 http://nai8.me/video/view.html?id=195
