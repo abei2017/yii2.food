@@ -8,6 +8,7 @@
 
 namespace app\modules\admin\controllers;
 
+use app\models\Conf;
 use app\models\Coupon;
 use app\models\CouponItem;
 use app\models\Dish;
@@ -24,6 +25,7 @@ class PromotionController extends N8Base {
             'promotion-index'=>['label'=>'促销简报','url'=>['/admin/promotion/index']],
             'promotion-wechat'=>['label'=>'微信端特惠','url'=>['/admin/promotion/wechat']],
             'promotion-coupon'=>['label'=>'优惠券','url'=>['/admin/promotion/coupon']],
+            'promotion-upoff'=>['label'=>'满减','url'=>['/admin/promotion/upoff']],
         ]
     ];
 
@@ -190,6 +192,44 @@ class PromotionController extends N8Base {
 
         return $this->render('coupon-items',[
             'dataProvider'=>$dataProvider
+        ]);
+    }
+
+    public function actionUpoff(){
+
+        $conf = Conf::readConf('up_off');
+        if(Yii::$app->request->isPost){
+            Yii::$app->response->format = 'json';
+            try {
+                $state = Yii::$app->request->post('state');
+                $upMoney = Yii::$app->request->post('up_money');
+                $offMoney = Yii::$app->request->post('off_money');
+                $beginTime = Yii::$app->request->post('begin_time');
+                $endTime = Yii::$app->request->post('end_time');
+
+                //todo
+
+                $conf = [
+                    'state'=>$state,
+                    'up_money'=>$upMoney,
+                    'off_money'=>$offMoney,
+                    'begin_time'=>strtotime($beginTime),
+                    'end_time'=>$endTime == 0 ? 0 : strtotime($endTime),
+                ];
+
+                Conf::writeConf('up_off',$conf);
+
+                return ['done'=>true];
+            }catch(Exception $e){
+                return ['done'=>false,'error'=>$e->getMessage()];
+            }
+        }
+
+        $this->menus = $this->cMenu['default'];
+        $this->initActiveMenu('promotion-upoff');
+
+        return $this->render('upoff',[
+            'conf'=>$conf
         ]);
     }
 }
