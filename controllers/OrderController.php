@@ -10,6 +10,7 @@ namespace app\controllers;
 
 use app\models\CouponItem;
 use app\models\OrderDish;
+use app\models\OrderUpoff;
 use app\models\User;
 use Da\QrCode\Contracts\LabelInterface;
 use Da\QrCode\Label;
@@ -117,9 +118,19 @@ class OrderController extends Controller {
             //  优惠
             if($model->preferential_money > 0){
                 $couponItem = CouponItem::find()->where(['order_id'=>$model->id])->one();
-                $couponItem->used_at = time();
-                $couponItem->update();
+                if($couponItem){
+                    $couponItem->used_at = time();
+                    $couponItem->update();
+                }
+
+                $upoff = OrderUpoff::find()->where(['order_id'=>$model->id])->one();
+                if($upoff){
+                    $upoff->ok_at = time();
+                    $upoff->update();
+                }
             }
+
+
 
             $model->update();
 

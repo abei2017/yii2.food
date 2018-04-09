@@ -8,13 +8,16 @@
 
 namespace app\controllers;
 
+use app\models\Conf;
 use app\models\Coupon;
 use app\models\CouponItem;
 use app\models\Dish;
 use app\models\Order;
 use app\models\OrderDish;
+use app\models\OrderUpoff;
 use Yii;
 use yii\base\Exception;
+use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\Response;
@@ -74,17 +77,37 @@ class CartController extends Controller {
                 $quantityTotal += $val;
             }
 
+            //  满减促销
+            $upOffPreferentialMoney = 0;
+            $upOffConf = Conf::readConf('up_off');
+            if(isset($upOffConf['state']) && $upOffConf['state'] == 1
+                && $upOffConf['begin_time'] < time() && ($upOffConf['end_time'] > time() || $upOffConf['end_time'] == 0)){
+                $upOffNumber = intval(floor($moneyTotal / $upOffConf['up_money']));
+                $upOffPreferentialMoney = $upOffNumber * $upOffConf['off_money'];
+
+                //  满减
+                if($upOffPreferentialMoney > 0){
+                    $upOffModel = new OrderUpoff();
+                    $upOffModel->order_id = $model->id;
+                    $upOffModel->created_at = time();
+                    $upOffModel->money = $upOffPreferentialMoney;
+                    $upOffModel->info = Json::encode($upOffConf);
+                    $upOffModel->save();
+                }
+            }
+
+
             //  优惠券
             $couponPreferentialMoney = 0;
             if(!empty($couponNumber)){
-                $couponPreferentialMoney = $coupon->price > $moneyTotal ? $moneyTotal : $coupon->price;
+                $couponPreferentialMoney = $coupon->price > ($moneyTotal - $upOffPreferentialMoney) ? ($moneyTotal - $upOffPreferentialMoney) : $coupon->price;
                 $couponItem->order_id = $model->id;
                 $couponItem->used_money = $couponPreferentialMoney;
                 $couponItem->update();
             }
 
-            $model->preferential_money = $couponPreferentialMoney;
-            $model->money = $moneyTotal - $couponPreferentialMoney;
+            $model->preferential_money = $couponPreferentialMoney + $upOffPreferentialMoney;
+            $model->money = $moneyTotal - $couponPreferentialMoney - $upOffPreferentialMoney;
 
             if($model->money == 0){
                 $model->paid_at = time();
@@ -98,6 +121,11 @@ class CartController extends Controller {
                 if(!empty($couponNumber)){
                     $couponItem->used_at = time();
                     $couponItem->update();
+                }
+
+                if($upOffPreferentialMoney > 0){
+                    $upOffModel->ok_at = time();
+                    $upOffModel->update();
                 }
             }
 

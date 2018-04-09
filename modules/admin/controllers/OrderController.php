@@ -9,6 +9,7 @@
 namespace app\modules\admin\controllers;
 
 use app\models\CouponItem;
+use app\models\OrderUpoff;
 use Yii;
 use app\models\Order;
 use app\models\OrderDish;
@@ -112,13 +113,15 @@ class OrderController extends N8Base {
         $model = Order::findOne($id);
 
         $couponItem = CouponItem::find()->where(['order_id'=>$id])->one();
+        $upoff = OrderUpoff::find()->where(['order_id'=>$id])->andWhere(['>','ok_at',0])->one();
 
         $this->menus = $this->cMenu['order'];
         $menu = ['label'=>'订单优惠信息','url'=>['/admin/order/preferential','id'=>$id]];
         $this->initActiveMenu('order-preferential',$menu);
 
         return $this->render('preferential',[
-            'couponItem'=>$couponItem
+            'couponItem'=>$couponItem,
+            'upoff'=>$upoff,
         ]);
     }
 }
