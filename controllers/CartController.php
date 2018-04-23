@@ -27,6 +27,7 @@ class CartController extends Controller {
     public function actionSubmit(){
         Yii::$app->response->format = Response::FORMAT_JSON;
         try {
+            $payType = Yii::$app->request->get('pay_type');
             $quantityList = Yii::$app->request->post('quantity');
             if(empty($quantityList)){
                 throw new Exception('您至少要选择一个菜品');
@@ -53,6 +54,7 @@ class CartController extends Controller {
             $model = new Order();
             $model->state = 'unpay';
             $model->created_at = time();
+            $model->pay_type = $payType;
             if($model->save() == false){
                 throw new Exception('新建订单失败');
             }
@@ -85,6 +87,7 @@ class CartController extends Controller {
                 $upOffNumber = intval(floor($moneyTotal / $upOffConf['up_money']));
                 $upOffPreferentialMoney = $upOffNumber * $upOffConf['off_money'];
 
+
                 //  满减
                 if($upOffPreferentialMoney > 0){
                     $upOffModel = new OrderUpoff();
@@ -96,6 +99,8 @@ class CartController extends Controller {
                 }
             }
 
+
+            //
 
             //  优惠券
             $couponPreferentialMoney = 0;

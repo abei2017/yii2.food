@@ -20,7 +20,8 @@
         "yiisoft/yii2-swiftmailer": "~2.0.0",
         "overtrue/wechat": "^3.3",
         "2amigos/qrcode-library": "^1.1",
-        "nesbot/carbon": "^1.25"
+        "nesbot/carbon": "^1.25",
+        "riverslei/payment": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

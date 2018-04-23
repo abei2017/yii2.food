@@ -8,6 +8,7 @@
 
 namespace app\controllers;
 
+use app\models\AlipayNotify;
 use app\models\CouponItem;
 use app\models\OrderDish;
 use app\models\OrderUpoff;
@@ -25,6 +26,11 @@ use EasyWeChat\Payment\Order as EOrder;
 use Da\QrCode\QrCode;
 use yii\web\Response;
 
+use Payment\Common\PayException;
+use Payment\Client\Charge;
+use Payment\Config;
+use Payment\Client\Notify;
+
 class OrderController extends Controller {
 
     public $enableCsrfValidation = false;
@@ -37,40 +43,77 @@ class OrderController extends Controller {
             ]);
         }
 
-        $config = Yii::$app->params['wx'];
-        $wxApp = new Application($config);
-        $payment = $wxApp->payment;
+        if($model->pay_type == 'wx'){
+            //wx
+            $config = Yii::$app->params['wx'];
+            $wxApp = new Application($config);
+            $payment = $wxApp->payment;
 
-        $totalFee = 1;
-        $attributes = [
-            'trade_type'=>EOrder::NATIVE,
-            'body'=>"自助下单",
-            'detail'=>"订单编号#{$model->id}",
-            'out_trade_no'=>$model->pay_id,
-            'total_fee'=>$totalFee,
-            'time_expire'=>date('YmdHis',time()+300),
-            'notify_url'=>Yii::$app->urlManager->createAbsoluteUrl(['/order/notify'])// order-notify.html
-        ];
+            $totalFee = 1;
+            $attributes = [
+                'trade_type'=>EOrder::NATIVE,
+                'body'=>"自助下单",
+                'detail'=>"订单编号#{$model->id}",
+                'out_trade_no'=>$model->pay_id,
+                'total_fee'=>$totalFee,
+                'time_expire'=>date('YmdHis',time()+300),
+                'notify_url'=>Yii::$app->urlManager->createAbsoluteUrl(['/order/notify'])// order-notify.html
+            ];
 
-        $o = new EOrder($attributes);
-        $result = $payment->prepare($o);
+            $o = new EOrder($attributes);
+            $result = $payment->prepare($o);
 
-        if ($result->return_code == 'SUCCESS' && $result->result_code == 'SUCCESS'){
-            $prepayId = $result->prepay_id;
-            $codeUrl = $result->code_url;
+            if ($result->return_code == 'SUCCESS' && $result->result_code == 'SUCCESS'){
+                $prepayId = $result->prepay_id;
+                $codeUrl = $result->code_url;
 
-            $label = new Label("请用微信扫码支付",null,12,LabelInterface::ALIGN_CENTER,['t'=>-24,'b'=>10]);
+                $label = new Label("请用微信扫码支付",null,12,LabelInterface::ALIGN_CENTER,['t'=>-24,'b'=>10]);
 
-            $qrcode = (new QrCode($codeUrl))
-                ->setMargin(50)->setSize(250)->setLabel($label);
-            return $this->render('pay',[
-                'qrcode'=>$qrcode,
-                'model'=>$model
-            ]);
+                $qrcode = (new QrCode($codeUrl))
+                    ->setMargin(50)->setSize(250)->setLabel($label);
+                return $this->render('pay',[
+                    'qrcode'=>$qrcode,
+                    'model'=>$model
+                ]);
+            }else{
+                Yii::error($result->return_msg.$result->err_code_des."，订单ID为{$model->id}",'order');
+                echo $result->return_msg.$result->err_code_des;
+            }
         }else{
-            Yii::error($result->return_msg.$result->err_code_des."，订单ID为{$model->id}",'order');
-            echo $result->return_msg.$result->err_code_des;
+            //alipay
+            $payData = [
+                'body'    => '自助下单',
+                'subject'    => "订单编号#{$model->id}",
+                'order_no'    => $model->pay_id,
+                'timeout_express' => time() + 600,// 表示必须 600s 内付款
+                'amount'    => '0.01',// 单位为元 ,最小为0.01
+                'return_param' => '123123',
+                'goods_type' => '1',// 0—虚拟类商品，1—实物类商品
+                'store_id' => '',
+                'operator_id' => '',
+                'terminal_id' => '',// 终端设备号(门店号或收银设备ID) 默认值 web
+            ];
+
+            $config = Yii::$app->params['alipay'];
+
+            try {
+                $str = Charge::run(Config::ALI_CHANNEL_QR, $config, $payData);
+
+                $label = new Label("请用支付宝扫码支付",null,12,LabelInterface::ALIGN_CENTER,['t'=>-24,'b'=>10]);
+                $qrcode = (new QrCode($str))
+                    ->setMargin(50)->setSize(250)->setLabel($label);
+                return $this->render('pay',[
+                    'qrcode'=>$qrcode,
+                    'model'=>$model
+                ]);
+            } catch (PayException $e) {
+                echo $e->errorMessage();
+                exit;
+            }
+
         }
+
+
     }
 
     public function actionNotify(){
@@ -168,6 +211,17 @@ class OrderController extends Controller {
             return ['done'=>true,'data'=>$model->id,'dishes'=>$return];
         }catch(Exception $e){
             return ['done'=>false,'error'=>$e->getMessage(),'data'=>$model->id];
+        }
+    }
+
+    public function actionAnotify(){
+        try {
+            $callback = new AlipayNotify();
+            $config = Yii::$app->params['alipay'];
+            $ret = Notify::run('ali_charge', $config, $callback);// 处理回调，内部进行了签名检查
+        } catch (PayException $e) {
+            echo $e->errorMessage();
+            exit;
         }
     }
 }

@@ -25,7 +25,8 @@ use yii\widgets\ActiveForm;
             <strong id="totalMoney">0.00</strong>
         </div>
         <ul class="btns">
-            <li data-url="<?= Url::to(['/cart/submit']);?>" id="wxBtn">微信支付</li>
+            <li data-url="<?= Url::to(['/cart/submit','pay_type'=>'wx']);?>"  class="_payBtn">微信支付</li>
+            <li data-url="<?= Url::to(['/cart/submit','pay_type'=>'alipay']);?>"  class="_payBtn">支付宝</li>
             <li class="coupon">
                 <a href="javascript:;" class="_add_coupon">优惠券</a>
             </li>
